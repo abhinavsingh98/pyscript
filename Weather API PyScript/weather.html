@@ -84,8 +84,9 @@
       import json
       import asyncio
       import re
-      response = await pyfetch(url="https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=198700fd07cfb27eb62679f850c5d048", method="GET")
-      cal= str('C')
+      response = await pyfetch(url="https://api.spotify.com/v1/me/player/currently-playing",     headers = {
+        "Authorization": f"Bearer BQD4HlhFxiPTfUxTEqytMqz0bWqs-GNA44Kv9LNHee8vu1reEGW9mtihtfzG6KhyDXqYvTlfbuJ0uf3VGIly_U2y7QX7rgIOZb2jBkh03PNKbVJCVygoPznoepkNAMLmLLbv2buwk3l6SdJ1RxRdYEaabj5Sd3Gf1HFjPh0_HOD7L6KoMB3K7SLi"
+            } method="GET")
       output = f'{await response.json()}'
       def jj(output):
       
@@ -96,12 +97,7 @@
          
         return st
       
-      
-      pyscript.write('tMetric', jj(output)['name'])
-      pyscript.write('tempDisplay', "{} °C".format(round(jj(output)['main']['temp']- 273.15,3)))
-      pyscript.write('tImperial', jj(output)['sys']['country'])
-      pyscript.write('humidDisplay', "{} Humidity".format(jj(output)['main']['humidity']))
-      pyscript.write('windDisplay', "{} Wind Speed".format(jj(output)['wind']['speed']))
+      pyscript.write('trackid', "{} Wind Speed".format(jj(output)['item']['id']))
       
       
           </py-script>
